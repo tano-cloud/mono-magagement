@@ -6,7 +6,7 @@ const passport = require("passport");
 module.exports = {
     displayMono: (req, res, next) => {
         logic.displayHome(req).then((data) => {
-            res.render(viewUsers + 'todo', data);
+            res.render(viewUsers + 'mono', data);
         });
     },
     addMono: (req, res, next) => {

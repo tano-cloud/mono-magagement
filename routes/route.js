@@ -4,9 +4,9 @@ const userController = require('../controller/UserController');
 const passport = require("passport");
 
 //みんなの投稿
-router.get('/', userController.displayTodo);
+router.get('/', userController.displayMono);
 
-router.post('/', userController.addTodo)
+router.post('/', userController.addMono)
 
 router.get('/signup', userController.getSignUp)
 

@@ -52,7 +52,7 @@ module.exports = {
             }
         });
     },
-    addTodo: (req) => {
+    addMono: (req) => {
         return new Promise((resolve, reject) => {
             const todo = req.body.add,
                 userId = req.user.id,

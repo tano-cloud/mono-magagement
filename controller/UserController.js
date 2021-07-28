@@ -4,13 +4,13 @@ const viewUsers = './users/';
 const passport = require("passport");
 
 module.exports = {
-    displayTodo: (req, res, next) => {
+    displayMono: (req, res, next) => {
         logic.displayHome(req).then((data) => {
             res.render(viewUsers + 'todo', data);
         });
     },
-    addTodo: (req, res, next) => {
-        logic.addTodo(req).then((data) => {
+    addMono: (req, res, next) => {
+        logic.addMono(req).then((data) => {
             res.redirect('/');
         });
     },

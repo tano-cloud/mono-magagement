@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>
+        <%= title %>
+    </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+
+<body class="container">
+    <header>
+        <!--スマホ用-->
+        <nav class="navbar navbar-dark bg-dark d-flex justify-content:space-between d-md-none p-3">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" v-on:click="onclick()" data-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu1</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu2</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu3</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--PC用-->
+        <nav class="navbar navbar-dark bg-dark d-none d-md-flex justify-content:space-between p-3">
+            <a class="navbar-brand" href="/">Navbar</a>
+            <ul class="navbar-nav d-flex flex-row">
+                <li class="nav-item active px-3">
+                    <a class="nav-link" href="/">HOME</a>
+                </li>
+                <li class="nav-item px-3">
+                    <a class="nav-link" href="/logout">ログアウト</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="d-flex justify-content-center py-md-5">
+        <%- include('./error_messages'); %>
+            <form action="/signin" method="post">
+                <div class="form-group row">
+                    <label>ユーザ名</label>
+                    <div  class="col-12">
+                        <input class="form-control required type="text" name="username" />
+                    </div>
+                </div>
+                <br>
+                <div class="form-group row">
+                    <label>パスワード</label>
+                    <div  class="col-12">
+                        <input  class="form-control required type="password" name="password" />
+                    </div>
+                </div>
+                <br>
+                <input class="btn btn-outline-secondary" type="submit" value="ログイン" />
+            </form>
+    </div>
+</body>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+    integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+    integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+    crossorigin="anonymous"></script>
+
+</html>

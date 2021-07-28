@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <title>
+    home
+  </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body class="container">
+  <%- include('./error_messages'); %>
+    <% if(isAuth) { %>
+      <header>
+        <!--スマホ用-->
+        <nav class="navbar navbar-dark bg-dark d-flex justify-content:space-between d-md-none p-3">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <button class="navbar-toggler" v-on:click="onclick()" data-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Menu1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Menu2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Menu3</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!--PC用-->
+        <nav class="navbar navbar-dark bg-dark d-none d-md-flex justify-content:space-between p-3">
+          <a class="navbar-brand" href="/">Navbar</a>
+          <ul class="navbar-nav d-flex flex-row">
+            <li class="nav-item active px-3">
+              <a class="nav-link" href="/">HOME</a>
+            </li>
+            <li class="nav-item px-3">
+              <a class="nav-link" href="/logout">ログアウト</a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <div class="d-flex justify-content-center py-md-5">
+        <form action="/" method="post">
+          <h1>
+            <label>ToDoリスト</label>
+          </h1>
+          <input size="25" required maxlength="50" type="text" name="add" placeholder="最大文字数は50文字です" />
+          <input type="submit" value="追加" />
+        </form>
+
+      </div>
+
+      <table align="center" class="" style="table-layout:fixed;width:100%;">
+
+        <% for(let todo of todos){ %>
+          <tr align="center">
+            <td class="p-md-2" style="word-wrap:break-word;"> 
+              <%= todo.content %>
+            </td>
+            <td>
+              <form action="/delete" method="post">
+                <input type="hidden" name="id" value="<%= todo.id%>">
+                <input type="submit" value="削除">
+              </form>
+            </td>
+            
+          </tr>
+          <% } %>
+      </table>
+
+
+
+
+      <% } else { %>
+
+        <!--未サインアップ・ログインはこの画面-->
+        <h1 class="text-center py-md-5 bg-success text-light">Portfolio App No.1 「Todoリスト」</h1>
+        <div id="about-this-app" class="text-center py-md-5">
+          <div class="py-md-5 py-2 display-2">About This App</div>
+          <div class="py-2 ddisplay-4">
+            一つ目のポートフォリオアプリです。 <br /><br />
+            主に使用した技術は、Node.js + Express(フレームワーク) + MySQL(DB) + Passport.js(認証パッケージ)<br /><br />
+            作成しようとしたきっかけは、単純に自身のスキル向上の為です。<br /><br />
+            DB操作と認証技術スキルを使用してアプリを練習し作成する際にToDoリストが適当だと思いました。<br /><br />
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+          <a class="btn btn-outline-success m-2 btn-lg" href="/signup">新規登録</a>
+          <a class="btn btn-outline-secondary m-2 btn-lg" href="/signin">ログイン</a>
+        </div>
+        <% } %>
+
+          <footer>
+          </footer>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+  integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+  integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+</html>

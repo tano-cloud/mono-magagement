@@ -1,5 +1,4 @@
 const mysql = require('mysql'),
-    knex = require('../db/knex'),
     bcrypt = require('bcrypt'),
     passport = require("passport"),
     connection = mysql.createConnection({

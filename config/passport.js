@@ -8,18 +8,7 @@ const secret = "secretCuisine123";
 
 module.exports = function (app) {
 
-  app.use(
-    cookieSession({
-      name: "session",
-      keys: [secret],
 
-      // Cookie Options
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    })
-  );
-
-  app.use(passport.initialize());
-  app.use(passport.session());
 
   passport.serializeUser(function (user, done) {
     console.log("serializeUser");
@@ -60,4 +49,17 @@ module.exports = function (app) {
         });
     }
   ));
+
+  app.use(
+    cookieSession({
+      name: "session",
+      keys: [secret],
+
+      // Cookie Options
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    })
+  );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
 };

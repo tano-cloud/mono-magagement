@@ -56,6 +56,8 @@ module.exports = {
         return new Promise((resolve, reject) => {
             const todo = req.body.add,
                 userId = req.user.id,
+                objStart = req.body.date1,
+                objEnd = req.body.date2,
                 isAuth = req.isAuthenticated(),
                 data = {
                     title: 'a',
@@ -63,7 +65,10 @@ module.exports = {
                 data_obj = {
                     user_id: userId,
                     content: todo,
+                    obj_start: objStart,
+                    obj_end: objEnd,
                 };
+                console.log(req.body.date1)
 
             connection.query('INSERT INTO tasks set ?', data_obj, function (error, results) {
                 if (error !== null) {

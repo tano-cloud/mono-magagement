@@ -49,6 +49,12 @@ module.exports = {
         logic.postEdit(req, res).then((data)=>{
             res.redirect('/');
         })
+    },
+
+    postExpire: (req, res, next)=>{
+        logic.postExpire(req, res).then((data)=>{
+            res.render(viewUsers + 'mono', data);
+        })
     }
 }
 

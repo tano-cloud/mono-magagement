@@ -23,8 +23,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             const isAuth = req.isAuthenticated();
             if (isAuth) {
-                const userid = req.user.id,
-                    isAuth = req.isAuthenticated();
+                const userid = req.user.id;
                 connection.query('SELECT * from tasks where user_id = ?', userid, function (error, results) {
                     if (error !== null) {
                         data = {
@@ -35,8 +34,6 @@ module.exports = {
                         resolve(data);
                     }
                     else {
-                        console.log(new Date().getTime())
-                        
                         data = {
                             title: 'ToDo App',
                             todos: results,
@@ -163,6 +160,46 @@ module.exports = {
                 res.redirect('/');
             });
         })
+    },
+
+    postExpire: (req, res) => {
+        return new Promise((resolve, reject) => {
+            const isAuth = req.isAuthenticated();
+            if (isAuth) {
+                const userid = req.user.id;
+                connection.query('SELECT * from tasks where user_id = ?', userid, function (error, results) {
+                    if (error !== null) {
+                        data = {
+                            title: 'Error',
+                            isAuth: isAuth,
+                        };
+                        console.log(error)
+                        resolve(data);
+                    }
+                    else {
+                        let json = JSON.stringify(results),
+                        item = JSON.parse(json);
+                        //降順
+                        item.sort((a,b)=> b.id - a.id);
+                        console.log(results)
+                        console.log(item)
+                        data = {
+                            title: 'ToDo App',
+                            todos: item,
+                            isAuth: isAuth,
+                        };
+                        resolve(data);
+                    }
+                })
+            }
+            else {
+                data = {
+                    title: 'ToDo App',
+                    isAuth: isAuth,
+                };
+                resolve(data);
+            }
+        });
     },
 }
 

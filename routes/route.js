@@ -29,5 +29,7 @@ router.post('/delete', userController.postDelete);
 
 router.post('/edit', userController.postEdit);
 
+router.post('/sortexp', userController.postExpire);
+
 module.exports = router;
 

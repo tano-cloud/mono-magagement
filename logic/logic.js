@@ -5,7 +5,8 @@ const mysql = require('mysql'),
         host: 'localhost',
         user: 'root',
         password: 'password',
-        database: 'todo_app'
+        database: 'todo_app',
+        dateStrings: 'date' /*または'true'*/,
     });
 
 //sql connect
@@ -34,6 +35,8 @@ module.exports = {
                         resolve(data);
                     }
                     else {
+                        console.log(new Date().getTime())
+                        
                         data = {
                             title: 'ToDo App',
                             todos: results,
@@ -59,6 +62,9 @@ module.exports = {
                 objStart = req.body.date1,
                 objEnd = req.body.date2,
                 isAuth = req.isAuthenticated(),
+                date1 = new Date(objStart),
+                date2 = new Date(objEnd),
+                // getTimeの出力はミリ秒
                 data = {
                     title: 'a',
                 },
@@ -68,7 +74,8 @@ module.exports = {
                     obj_start: objStart,
                     obj_end: objEnd,
                 };
-                console.log(req.body.date1)
+                console.log((new Date(objEnd).getTime() - new Date().getTime())/(1000*60*60*24))
+
 
             connection.query('INSERT INTO tasks set ?', data_obj, function (error, results) {
                 if (error !== null) {

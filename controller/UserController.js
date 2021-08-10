@@ -55,6 +55,19 @@ module.exports = {
         logic.postExpire(req, res).then((data)=>{
             res.render(viewUsers + 'mono', data);
         })
-    }
+    },
+
+    postExpire2: (req, res, next)=>{
+        logic.postExpire2(req, res).then((data)=>{
+            res.render(viewUsers + 'mono', data);
+        })
+    },
+
+    postExpire3: (req, res, next)=>{
+        logic.postExpire3(req, res).then((data)=>{
+            res.render(viewUsers + 'mono', data);
+        })
+    },
+
 }
 

@@ -79,9 +79,23 @@
         </form>
       </div>
 
+
+      
       <td>
         <form action="/sortexp" method="post">
-          <input type="submit" value="sort">
+          <input type="submit" value="残り期間・降順">
+        </form>
+      </td>
+
+      <td>
+        <form action="/sortexp2" method="post">
+          <input type="submit" value="管理開始日・降順">
+        </form>
+      </td>
+
+      <td>
+        <form action="/sortexp3" method="post">
+          <input type="submit" value="新規投稿順">
         </form>
       </td>
 
@@ -90,7 +104,8 @@
         <thead>
           <tr align="center">
             <th>メモ内容</th>
-            <th>管理開始日</th>
+            <th>投稿日</th>
+            <th>使用開始日</th>
             <th>買い替え予定日</th>
             <th>残り期間</th>
             <th></th>
@@ -101,6 +116,9 @@
             <tr align="center">
               <td class="p-md-2" style="word-wrap:break-word;">
                 <%= todo.content %>
+              </td>
+              <td class="p-md-2" style="word-wrap:break-word;">
+                <%= todo.post_day %>
               </td>
               <td class="p-md-2" style="word-wrap:break-word;">
                 <%= todo.obj_start %>

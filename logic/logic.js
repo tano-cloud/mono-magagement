@@ -60,16 +60,16 @@ module.exports = {
                 objEnd = req.body.date2,
                 isAuth = req.isAuthenticated(),
                 // getTimeの出力はミリ秒
-                postDay = new Date().getFullYear() + "-" +  (new Date().getMonth() + 1) + "-"+ new Date().getDate();
-                data = {
-                    title: 'a',
-                },
+                postDay = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate();
+            data = {
+                title: 'a',
+            },
                 data_obj = {
                     user_id: userId,
                     content: todo,
                     obj_start: objStart,
                     obj_end: objEnd,
-                    post_day: postDay 
+                    post_day: postDay
                 };
 
             connection.query('INSERT INTO tasks set ?', data_obj, function (error, results) {
@@ -160,9 +160,10 @@ module.exports = {
         })
     },
 
-    postExpire: (req, res) => {
+    postSort: (req, res) => {
         return new Promise((resolve, reject) => {
-            const isAuth = req.isAuthenticated();
+            const isAuth = req.isAuthenticated(),
+            sort_number = Number(req.body.number);
             if (isAuth) {
                 const userid = req.user.id;
                 connection.query('SELECT * from tasks where user_id = ?', userid, function (error, results) {
@@ -176,85 +177,23 @@ module.exports = {
                     }
                     else {
                         let json = JSON.stringify(results),
-                        item = JSON.parse(json);
+                            item = JSON.parse(json);
                         //降順
-                        item.sort((a,b)=> (new Date(b.obj_end).getTime() - new Date(a.obj_end).getTime()));
-                        data = {
-                            title: 'ToDo App',
-                            todos: item,
-                            isAuth: isAuth,
-                        };
-                        resolve(data);
-                    }
-                })
-            }
-            else {
-                data = {
-                    title: 'ToDo App',
-                    isAuth: isAuth,
-                };
-                resolve(data);
-            }
-        });
-    },
+                        console.log(sort_number)
+                        switch (sort_number) {
+                            case 1:
+                                item.sort((a, b) => (new Date(b.obj_end).getTime() - new Date(a.obj_end).getTime()));
+                                console.log('a')
+                                break;
+                            case 2:
+                                item.sort((a, b) => (new Date(b.obj_start).getTime() - new Date(a.obj_start).getTime()));
+                                console.log('b')
+                                break;
+                            case 3:
+                                console.log('c')
+                                item.sort((a, b) => (new Date(b.post_day).getTime() - new Date(a.post_day).getTime()));
+                        }
 
-    postExpire2: (req, res) => {
-        return new Promise((resolve, reject) => {
-            const isAuth = req.isAuthenticated();
-            if (isAuth) {
-                const userid = req.user.id;
-                connection.query('SELECT * from tasks where user_id = ?', userid, function (error, results) {
-                    if (error !== null) {
-                        data = {
-                            title: 'Error',
-                            isAuth: isAuth,
-                        };
-                        console.log(error)
-                        resolve(data);
-                    }
-                    else {
-                        let json = JSON.stringify(results),
-                        item = JSON.parse(json);
-                        //降順
-                        item.sort((a,b)=> (new Date(b.obj_start).getTime() - new Date(a.obj_start).getTime()));
-                        data = {
-                            title: 'ToDo App',
-                            todos: item,
-                            isAuth: isAuth,
-                        };
-                        resolve(data);
-                    }
-                })
-            }
-            else {
-                data = {
-                    title: 'ToDo App',
-                    isAuth: isAuth,
-                };
-                resolve(data);
-            }
-        });
-    },
-
-    postExpire3: (req, res) => {
-        return new Promise((resolve, reject) => {
-            const isAuth = req.isAuthenticated();
-            if (isAuth) {
-                const userid = req.user.id;
-                connection.query('SELECT * from tasks where user_id = ?', userid, function (error, results) {
-                    if (error !== null) {
-                        data = {
-                            title: 'Error',
-                            isAuth: isAuth,
-                        };
-                        console.log(error)
-                        resolve(data);
-                    }
-                    else {
-                        let json = JSON.stringify(results),
-                        item = JSON.parse(json);
-                        //降順
-                        item.sort((a,b)=> (b.post_day - a.post_day));
                         data = {
                             title: 'ToDo App',
                             todos: item,

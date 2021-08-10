@@ -80,24 +80,15 @@
       </div>
 
 
-      
-      <td>
-        <form action="/sortexp" method="post">
-          <input type="submit" value="残り期間・降順">
-        </form>
-      </td>
 
-      <td>
-        <form action="/sortexp2" method="post">
-          <input type="submit" value="管理開始日・降順">
-        </form>
-      </td>
-
-      <td>
-        <form action="/sortexp3" method="post">
-          <input type="submit" value="新規投稿順">
-        </form>
-      </td>
+      <form class="form-horizontal" action="/sort" method="post">
+        <select class="form-control" id="number" name="number" onchange="submit(this.form)">
+          <option selected >--Please choose an option--</option>
+          <option value="1">残り期間・降順</option>
+          <option value="2">使用開始日・降順</option>
+          <option value="3">新規投稿順</option>
+        </select>
+      </form>
 
 
       <table align="center" class="table" style="table-layout:fixed;width:100%;">

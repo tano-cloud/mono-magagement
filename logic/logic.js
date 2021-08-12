@@ -186,10 +186,18 @@ module.exports = {
                                 console.log('a')
                                 break;
                             case 2:
+                                item.sort((a, b) => (new Date(a.obj_end).getTime() - new Date(b.obj_end).getTime()));
+                                console.log('a')
+                                break;
+                            case 3:
                                 item.sort((a, b) => (new Date(b.obj_start).getTime() - new Date(a.obj_start).getTime()));
                                 console.log('b')
                                 break;
-                            case 3:
+                            case 4:
+                                item.sort((a, b) => (new Date(a.obj_start).getTime() - new Date(b.obj_start).getTime()));
+                                console.log('b')
+                                break;
+                            case 5:
                                 console.log('c')
                                 item.sort((a, b) => (new Date(b.post_day).getTime() - new Date(a.post_day).getTime()));
                         }
